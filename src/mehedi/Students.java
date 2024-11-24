@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Student {
+public class Students {
     private static final String HOST = "localhost";
     private static final int PORT = 12345;
 

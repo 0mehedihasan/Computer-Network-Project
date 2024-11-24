@@ -108,14 +108,24 @@ public class Server {
         }
 
         private String login(String[] parts) {
-            if (parts[1].equals("admin@mehedi.com") && parts[2].equals("mehedi")) {
+            String userId = parts[1];
+            String password = parts[2];
+
+            // Check admin credentials
+            if (userId.equals("admin@mehedi.com") && password.equals("mehedi")) {
                 return "SUCCESS;Admin login";
-            } else if (studentDB.containsKey(parts[1]) && parts[2].equals("Mehedi")) {
-                return "SUCCESS;Student login";
-            } else {
-                return "ERROR;Invalid login credentials";
             }
+
+            // Check student credentials
+            Student student = studentDB.get(userId);
+            if (student != null && password.equals("mehedi")) { // Assuming password is "mehedi" for all students
+                return "SUCCESS;Student login";
+            }
+
+            // Invalid credentials
+            return "ERROR;Invalid login credentials";
         }
+
 
         private String addStudent(String[] parts) {
             String name = parts[1];
